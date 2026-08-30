@@ -1,0 +1,287 @@
+/* ============================================================
+   Three Sisters' Olshoppe — Design System
+   Warm-neutral, beauty-shop-professional. Bootstrap 5 is the base;
+   these variables + overrides give it its own identity.
+   ============================================================ */
+
+/* Fonts: Poppins/Inter are used if the OS happens to have them installed,
+   but are NOT fetched from Google Fonts — this app must work fully offline
+   (XAMPP without internet access). The system-font stack below is a close,
+   professional-looking substitute on Windows/macOS/Linux either way. */
+:root {
+    --ts-font-heading: 'Poppins', -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    --ts-font-body: 'Inter', -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+    /* Palette */
+    --ts-bg: #FAF7F5;
+    --ts-surface: #FFFFFF;
+    --ts-text: #2E2A28;
+    --ts-text-muted: #8A7F7A;
+    --ts-border: #ECE4E0;
+    --ts-accent: #C98A93;
+    --ts-accent-dark: #B06E78;
+    --ts-accent-tint: #F7EBEC;
+    --ts-sidebar-bg: #2E2422;
+    --ts-sidebar-text: #E9DFDC;
+    --ts-sidebar-active: #C98A93;
+
+    /* Status colors */
+    --ts-success: #3E8E5A;
+    --ts-success-bg: #E7F5EC;
+    --ts-warning: #B98A2E;
+    --ts-warning-bg: #FBF1DF;
+    --ts-danger: #C0473F;
+    --ts-danger-bg: #FBEAE8;
+    --ts-info: #3E7CB1;
+    --ts-info-bg: #E8F1FA;
+
+    /* Radii / shadow */
+    --ts-radius: 0.65rem;
+    --ts-shadow: 0 2px 10px rgba(46, 34, 28, 0.06);
+    --ts-shadow-lg: 0 8px 28px rgba(46, 34, 28, 0.10);
+
+    --bs-body-font-family: var(--ts-font-body);
+}
+
+body {
+    background-color: var(--ts-bg);
+    color: var(--ts-text);
+    font-family: var(--ts-font-body);
+}
+
+h1, h2, h3, h4, h5, h6, .brand-font {
+    font-family: var(--ts-font-heading);
+    color: var(--ts-text);
+}
+
+a { color: var(--ts-accent-dark); }
+a:hover { color: var(--ts-accent); }
+
+/* ---------- Buttons ---------- */
+.btn-primary {
+    background-color: var(--ts-accent);
+    border-color: var(--ts-accent);
+    color: #fff;
+}
+.btn-primary:hover, .btn-primary:focus {
+    background-color: var(--ts-accent-dark);
+    border-color: var(--ts-accent-dark);
+}
+.btn-outline-primary {
+    color: var(--ts-accent-dark);
+    border-color: var(--ts-accent);
+}
+.btn-outline-primary:hover {
+    background-color: var(--ts-accent);
+    border-color: var(--ts-accent);
+}
+
+/* ---------- Auth (login) screen ---------- */
+.auth-body {
+    background: linear-gradient(160deg, var(--ts-accent-tint) 0%, var(--ts-bg) 55%);
+    min-height: 100vh;
+}
+.auth-shell {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+}
+.auth-card {
+    background: var(--ts-surface);
+    border-radius: 1rem;
+    box-shadow: var(--ts-shadow-lg);
+    padding: 2.5rem 2.25rem;
+    width: 100%;
+    max-width: 400px;
+}
+.auth-brand { text-align: center; margin-bottom: 1.75rem; }
+.auth-logo {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: var(--ts-accent-tint);
+    color: var(--ts-accent-dark);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem;
+    margin: 0 auto 0.75rem;
+}
+.auth-title { font-size: 1.3rem; font-weight: 700; margin-bottom: 0.15rem; }
+.auth-subtitle { color: var(--ts-text-muted); font-size: 0.9rem; }
+.auth-submit { padding: 0.6rem; font-weight: 600; }
+.auth-footnote { text-align: center; color: var(--ts-text-muted); font-size: 0.78rem; margin-top: 1.5rem; margin-bottom: 0; }
+
+/* ---------- App shell: sidebar + topbar + content ---------- */
+.app-shell { display: flex; min-height: 100vh; }
+
+.app-sidebar {
+    width: 250px;
+    flex-shrink: 0;
+    background: var(--ts-sidebar-bg);
+    color: var(--ts-sidebar-text);
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0; left: 0; bottom: 0;
+    z-index: 1030;
+    transition: transform 0.2s ease;
+}
+.app-sidebar .sidebar-brand {
+    display: flex; align-items: center; gap: 0.6rem;
+    padding: 1.25rem 1.25rem 1rem;
+    font-family: var(--ts-font-heading);
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: #fff;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.app-sidebar .sidebar-brand .logo-mark {
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    background: var(--ts-accent);
+    display: flex; align-items: center; justify-content: center;
+    color: #fff;
+}
+.app-sidebar .sidebar-nav {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0.75rem 0.6rem;
+}
+.app-sidebar .nav-section-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(233, 223, 220, 0.45);
+    padding: 0.9rem 0.75rem 0.3rem;
+}
+.app-sidebar .nav-link {
+    color: var(--ts-sidebar-text);
+    border-radius: 0.5rem;
+    padding: 0.55rem 0.75rem;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    margin-bottom: 0.15rem;
+}
+.app-sidebar .nav-link i { font-size: 1rem; width: 1.1rem; text-align: center; }
+.app-sidebar .nav-link:hover { background: rgba(255,255,255,0.06); color: #fff; }
+.app-sidebar .nav-link.active {
+    background: var(--ts-sidebar-active);
+    color: #fff;
+    font-weight: 600;
+}
+.app-sidebar .sidebar-foot {
+    padding: 0.9rem 1.1rem;
+    font-size: 0.72rem;
+    color: rgba(233, 223, 220, 0.4);
+    border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.app-main { margin-left: 250px; flex: 1; display: flex; flex-direction: column; min-width: 0; }
+
+.app-topbar {
+    background: var(--ts-surface);
+    border-bottom: 1px solid var(--ts-border);
+    padding: 0.7rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 1020;
+}
+.app-topbar .topbar-search {
+    max-width: 320px;
+    flex: 1;
+}
+.app-topbar .role-pill {
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    background: var(--ts-accent-tint);
+    color: var(--ts-accent-dark);
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+}
+.app-topbar .avatar-circle {
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    background: var(--ts-accent);
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+.sidebar-toggle-btn { display: none; }
+
+.app-content { padding: 1.5rem; flex: 1; }
+
+.page-header { margin-bottom: 1.25rem; }
+.page-header .page-title { font-weight: 700; margin-bottom: 0.15rem; }
+.page-header .breadcrumb { font-size: 0.82rem; margin-bottom: 0; }
+
+/* ---------- Cards ---------- */
+.card, .ts-card {
+    background: var(--ts-surface);
+    border: 1px solid var(--ts-border);
+    border-radius: var(--ts-radius);
+    box-shadow: var(--ts-shadow);
+}
+.stat-card { padding: 1.1rem 1.25rem; }
+.stat-card .stat-label { font-size: 0.8rem; color: var(--ts-text-muted); margin-bottom: 0.35rem; }
+.stat-card .stat-value { font-size: 1.55rem; font-weight: 700; font-family: var(--ts-font-heading); }
+.stat-card .stat-icon {
+    width: 42px; height: 42px;
+    border-radius: 0.6rem;
+    background: var(--ts-accent-tint);
+    color: var(--ts-accent-dark);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem;
+}
+
+/* ---------- Status badges (consistent everywhere) ---------- */
+.badge-status { font-weight: 600; font-size: 0.72rem; padding: 0.32rem 0.6rem; border-radius: 999px; }
+.badge-success { background: var(--ts-success-bg); color: var(--ts-success); }
+.badge-warning { background: var(--ts-warning-bg); color: var(--ts-warning); }
+.badge-danger  { background: var(--ts-danger-bg);  color: var(--ts-danger); }
+.badge-info    { background: var(--ts-info-bg);    color: var(--ts-info); }
+.badge-neutral { background: #F1EDEB; color: var(--ts-text-muted); }
+
+/* ---------- Tables ---------- */
+.table thead th {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--ts-text-muted);
+    border-bottom-width: 1px;
+    font-weight: 600;
+}
+.table td { vertical-align: middle; }
+
+/* ---------- Empty state ---------- */
+.empty-state { text-align: center; padding: 3rem 1rem; color: var(--ts-text-muted); }
+.empty-state i { font-size: 2.2rem; color: var(--ts-border); display: block; margin-bottom: 0.75rem; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 991.98px) {
+    .app-sidebar { transform: translateX(-100%); }
+    .app-sidebar.open { transform: translateX(0); }
+    .app-main { margin-left: 0; }
+    .sidebar-toggle-btn { display: inline-flex; }
+    .sidebar-backdrop {
+        display: none;
+        position: fixed; inset: 0;
+        background: rgba(0,0,0,0.35);
+        z-index: 1025;
+    }
+    .sidebar-backdrop.show { display: block; }
+}
+
+@media (max-width: 575.98px) {
+    .app-content { padding: 1rem; }
+    .app-topbar { padding: 0.6rem 1rem; }
+    .app-topbar .topbar-search { display: none; }
+}
